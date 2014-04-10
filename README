@@ -1,0 +1,2 @@
+g++ -Wall test.cpp -o test // El Wall es para que nos quite los warnings
+./test < test.in // test.in es el input

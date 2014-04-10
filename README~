@@ -1,0 +1,1 @@
+g++ -Wall test.cpp -o test // El Wall es para que nos quite los warnings
