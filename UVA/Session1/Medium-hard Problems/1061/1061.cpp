@@ -3,6 +3,7 @@
 #include <map>
 #include <vector>
 #include <set>
+#include <list>
 using namespace std;
 
 void printVectorPairs(vector<pair<string,string> > &v){
@@ -32,7 +33,7 @@ void printSet(set<string> &s){
 
 }
 
-void findChild(string f, string m, map<string,string> &m1, map<string,vector<string> > &m2){
+void findChild(string f, string m, map<string,string> &m1, map<string,vector<string> > &m2, set<string> &vs){
   
   vector<pair<string,string> > v;
   
@@ -49,8 +50,7 @@ void findChild(string f, string m, map<string,string> &m1, map<string,vector<str
 
   }
   
-  printVectorPairs(v);
-  set<string> vs;
+  //printVectorPairs(v);
   string a,b,c;
   
   for(int i=0; i<int(v.size()); ++i){
@@ -78,17 +78,110 @@ void findChild(string f, string m, map<string,string> &m1, map<string,vector<str
       vs.insert(m1[c]);
     
   }
-  printSet(vs);
-  
-  //
-  
-  cout<<endl;
+  //printSet(vs);
+
 }
 
-void findParent(string p, string h, map<string,string> &m1, map<string,vector<string> > &m2){
+void findParent(string p, string h, map<string,string> &m1, map<string,vector<string> > &m2, set<string> &vs){
+
+  //Combinaciones del hijo
+  //Combinaciones del padre
+  
+  //A partir de estas dos, saco las posibles combinaciones de la madre
+  h = h.substr(0,h.length()-1);
+  
+  list<string> s;
+  s.push_back("AA");
+  s.push_back("AB");
+  s.push_back("AO");
+  s.push_back("BB");
+  s.push_back("BO");
+  s.push_back("OO");
+  
+  string p2,p3,p4,p5;
+  
+  for(int i=0; i<int(m2[p.substr(0,p.length()-1)].size()); ++i){
+    p2 = m2[p.substr(0,p.length()-1)][i];
+    for(list<string>::iterator it = s.begin(); it != s.end(); it++){
+  
+      p4 = p2[0];
+      p5 = (*it)[0];
+      p3 = p4 + p5;
+      if(m1.find(p3) != m1.end())
+        if(m1[p3] == h)
+          vs.insert((*it));
+      
+      p4 = p2[0];
+      p5 = (*it)[1];
+      p3 = p4 + p5;
+      if(m1.find(p3) != m1.end())
+        if(m1[p3] == h)
+          vs.insert((*it));
+      
+      p4 = p2[1];
+      p5 = (*it)[0];
+      p3 = p4 + p5;
+      if(m1.find(p3) != m1.end())
+        if(m1[p3] == h)
+          vs.insert((*it));
+      
+      p4 = p2[1];
+      p5 = (*it)[1];
+      p3 = p4 + p5;
+      if(m1.find(p3) != m1.end())
+        if(m1[p3] == h)
+          vs.insert((*it));
+      
+      p4 = (*it)[0];
+      p5 = p2[0];
+      p3 = p4 + p5;
+      if(m1.find(p3) != m1.end())
+        if(m1[p3] == h)
+          vs.insert((*it));
+      
+      p4 = (*it)[0];
+      p5 = p2[1];
+      p3 = p4 + p5;
+      if(m1.find(p3) != m1.end())
+        if(m1[p3] == h)
+          vs.insert((*it));
+      
+      p4 = (*it)[1];
+      p5 = p2[0];
+      p3 = p4 + p5;
+      if(m1.find(p3) != m1.end())
+        if(m1[p3] == h)
+          vs.insert((*it));
+      
+      p4 = (*it)[1];
+      p5 = p2[1];
+      p3 = p4 + p5;
+      if(m1.find(p3) != m1.end())
+        if(m1[p3] == h)
+          vs.insert((*it));
+      
+    
+    }
+  }
+  
+  //printSet(vs);
+
 }
 
+void printSet2(set<string> &s){
 
+  int siz = s.size();
+  cout << "{";
+  for(set<string>::iterator it = s.begin(); it != s.end(); it++){
+    cout << *it;
+    if(siz > 1)
+      cout << ", ";
+    
+    siz--;
+  }
+  cout << "}";
+
+}
 
 int main(){
 
@@ -126,17 +219,19 @@ int main(){
     if(c == 3) h = s;
     c++;
     
-    
+    set<string> s2;
     if(c == 4) {
       c = 1;
-      
-      if(h == "?")
-        findChild(f,m,m1,m2);
-      else if( f == "?" )
-        findParent(m,h,m1,m2);
-      else if( m == "?" )
-        findParent(f,h,m1,m2);
-   
+      if(h == "?"){
+        findChild(f,m,m1,m2,s2);
+        cout<<f<<" "<<m <<" ";
+        printSet2(s2);
+        cout<<endl;
+      }else if( f == "?" ){
+        findParent(m,h,m1,m2,s2);
+      }else if( m == "?" ){
+        findParent(f,h,m1,m2,s2);
+      }
     }
   }
 
