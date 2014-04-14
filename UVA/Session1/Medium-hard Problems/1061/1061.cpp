@@ -51,49 +51,102 @@ void findChild(string f, string m, map<string,string> &m1, map<string,vector<str
   }
   
   //printVectorPairs(v);
-  string a,b,c,d;
-  string p6 = "+";
-  string p7 = "-";
+  //cout<<endl;
   
+  string a,b,c,d;
+  string p6 = f.substr(f.length()-1,f.length());
+  string p7 = m.substr(m.length()-1,m.length());
+  
+  if(p6 == "-" && p7 == "-"){
+    p6 = "-";
+    p7 = "-";
+  }else{
+    p6 = "+";
+    p7 = "-";
+  }
   for(int i=0; i<int(v.size()); ++i){
     
     a = v[i].first[0];
     b = v[i].second[0];
     c = a+b;
     if(m1.find(c) != m1.end()){
-          d = m1[c] + p6;
-          vs.insert(d);
-          d = m1[c] + p7;
-          vs.insert(d);
-        }
+      d = m1[c] + p6;
+      vs.insert(d);
+      d = m1[c] + p7;
+      vs.insert(d);
+    }
       
+    a = v[i].first[0];
     b = v[i].second[1];
     c = a+b;
     if(m1.find(c) != m1.end()){
-          d = m1[c] + p6;
-          vs.insert(d);
-          d = m1[c] + p7;
-          vs.insert(d);
-        }
+      d = m1[c] + p6;
+      vs.insert(d);
+      d = m1[c] + p7;
+      vs.insert(d);
+    }
     
     a = v[i].first[1];
     b = v[i].second[0];
     c = a+b;
     if(m1.find(c) != m1.end()){
-          d = m1[c] + p6;
-          vs.insert(d);
-          d = m1[c] + p7;
-          vs.insert(d);
-        }
+      d = m1[c] + p6;
+      vs.insert(d);
+      d = m1[c] + p7;
+      vs.insert(d);
+    }
     
+    a = v[i].first[1];
     b = v[i].second[1];
     c = a+b;
     if(m1.find(c) != m1.end()){
-          d = m1[c] + p6;
-          vs.insert(d);
-          d = m1[c] + p7;
-          vs.insert(d);
-        }
+      d = m1[c] + p6;
+      vs.insert(d);
+      d = m1[c] + p7;
+      vs.insert(d);
+    }
+    
+    a = v[i].second[0];
+    b = v[i].first[0];
+    c = a+b;
+    if(m1.find(c) != m1.end()){
+      d = m1[c] + p6;
+      vs.insert(d);
+      d = m1[c] + p7;
+      vs.insert(d);
+    }
+    
+    a = v[i].second[0];
+    b = v[i].first[1];
+    c = a+b;
+    if(m1.find(c) != m1.end()){
+      d = m1[c] + p6;
+      vs.insert(d);
+      d = m1[c] + p7;
+      vs.insert(d);
+    }
+    
+    a = v[i].second[1];
+    b = v[i].first[0];
+    c = a+b;
+    if(m1.find(c) != m1.end()){
+      d = m1[c] + p6;
+      vs.insert(d);
+      d = m1[c] + p7;
+      vs.insert(d);
+    }
+    
+    a = v[i].second[1];
+    b = v[i].first[1];
+    c = a+b;
+    if(m1.find(c) != m1.end()){
+      d = m1[c] + p6;
+      vs.insert(d);
+      d = m1[c] + p7;
+      vs.insert(d);
+    }
+      
+    
     
   }
   //printSet(vs);
@@ -102,6 +155,8 @@ void findChild(string f, string m, map<string,string> &m1, map<string,vector<str
 
 void findParent(string p, string h, map<string,string> &m1, map<string,vector<string> > &m2, set<string> &vs){
   
+  string p8 = p.substr(p.length()-1,p.length());
+  string p9 = h.substr(h.length()-1,h.length());
   h = h.substr(0,h.length()-1);
   
   list<string> s;
@@ -125,10 +180,22 @@ void findParent(string p, string h, map<string,string> &m1, map<string,vector<st
       p3 = p4 + p5;
       if(m1.find(p3) != m1.end())
         if(m1[p3] == h){
-          p4 = m1[(*it)] + p6;
-          vs.insert(p4);
-          p4 = m1[(*it)] + p7;
-          vs.insert(p4);
+          if(p9 == "+"){
+            if(p8 == "-"){
+              p4 = m1[(*it)] + p6;
+              vs.insert(p4);
+            }else if(p8 == "+"){
+              p4 = m1[(*it)] + p6;
+              vs.insert(p4);
+              p4 = m1[(*it)] + p7;
+              vs.insert(p4);
+            }
+          }else{
+            p4 = m1[(*it)] + p6;
+            vs.insert(p4);
+            p4 = m1[(*it)] + p7;
+            vs.insert(p4);
+          }
         }
         
       p4 = p2[0];
@@ -136,10 +203,22 @@ void findParent(string p, string h, map<string,string> &m1, map<string,vector<st
       p3 = p4 + p5;
       if(m1.find(p3) != m1.end())
         if(m1[p3] == h){
-          p4 = m1[(*it)] + p6;
-          vs.insert(p4);
-          p4 = m1[(*it)] + p7;
-          vs.insert(p4);
+          if(p9 == "+"){
+            if(p8 == "-"){
+              p4 = m1[(*it)] + p6;
+              vs.insert(p4);
+            }else if(p8 == "+"){
+              p4 = m1[(*it)] + p6;
+              vs.insert(p4);
+              p4 = m1[(*it)] + p7;
+              vs.insert(p4);
+            }
+          }else{
+            p4 = m1[(*it)] + p6;
+            vs.insert(p4);
+            p4 = m1[(*it)] + p7;
+            vs.insert(p4);
+          }
         }
       
       p4 = p2[1];
@@ -147,10 +226,22 @@ void findParent(string p, string h, map<string,string> &m1, map<string,vector<st
       p3 = p4 + p5;
       if(m1.find(p3) != m1.end())
         if(m1[p3] == h){
-          p4 = m1[(*it)] + p6;
-          vs.insert(p4);
-          p4 = m1[(*it)] + p7;
-          vs.insert(p4);
+          if(p9 == "+"){
+            if(p8 == "-"){
+              p4 = m1[(*it)] + p6;
+              vs.insert(p4);
+            }else if(p8 == "+"){
+              p4 = m1[(*it)] + p6;
+              vs.insert(p4);
+              p4 = m1[(*it)] + p7;
+              vs.insert(p4);
+            }
+          }else{
+            p4 = m1[(*it)] + p6;
+            vs.insert(p4);
+            p4 = m1[(*it)] + p7;
+            vs.insert(p4);
+          }
         }
       
       p4 = p2[1];
@@ -158,10 +249,22 @@ void findParent(string p, string h, map<string,string> &m1, map<string,vector<st
       p3 = p4 + p5;
       if(m1.find(p3) != m1.end())
         if(m1[p3] == h){
-          p4 = m1[(*it)] + p6;
-          vs.insert(p4);
-          p4 = m1[(*it)] + p7;
-          vs.insert(p4);
+          if(p9 == "+"){
+            if(p8 == "-"){
+              p4 = m1[(*it)] + p6;
+              vs.insert(p4);
+            }else if(p8 == "+"){
+              p4 = m1[(*it)] + p6;
+              vs.insert(p4);
+              p4 = m1[(*it)] + p7;
+              vs.insert(p4);
+            }
+          }else{
+            p4 = m1[(*it)] + p6;
+            vs.insert(p4);
+            p4 = m1[(*it)] + p7;
+            vs.insert(p4);
+          }
         }
       
       p4 = (*it)[0];
@@ -169,10 +272,22 @@ void findParent(string p, string h, map<string,string> &m1, map<string,vector<st
       p3 = p4 + p5;
       if(m1.find(p3) != m1.end())
         if(m1[p3] == h){
-          p4 = m1[(*it)] + p6;
-          vs.insert(p4);
-          p4 = m1[(*it)] + p7;
-          vs.insert(p4);
+          if(p9 == "+"){
+            if(p8 == "-"){
+              p4 = m1[(*it)] + p6;
+              vs.insert(p4);
+            }else if(p8 == "+"){
+              p4 = m1[(*it)] + p6;
+              vs.insert(p4);
+              p4 = m1[(*it)] + p7;
+              vs.insert(p4);
+            }
+          }else{
+            p4 = m1[(*it)] + p6;
+            vs.insert(p4);
+            p4 = m1[(*it)] + p7;
+            vs.insert(p4);
+          }
         }
       
       p4 = (*it)[0];
@@ -180,10 +295,22 @@ void findParent(string p, string h, map<string,string> &m1, map<string,vector<st
       p3 = p4 + p5;
       if(m1.find(p3) != m1.end())
         if(m1[p3] == h){
-          p4 = m1[(*it)] + p6;
-          vs.insert(p4);
-          p4 = m1[(*it)] + p7;
-          vs.insert(p4);
+          if(p9 == "+"){
+            if(p8 == "-"){
+              p4 = m1[(*it)] + p6;
+              vs.insert(p4);
+            }else if(p8 == "+"){
+              p4 = m1[(*it)] + p6;
+              vs.insert(p4);
+              p4 = m1[(*it)] + p7;
+              vs.insert(p4);
+            }
+          }else{
+            p4 = m1[(*it)] + p6;
+            vs.insert(p4);
+            p4 = m1[(*it)] + p7;
+            vs.insert(p4);
+          }
         }
       
       p4 = (*it)[1];
@@ -191,10 +318,22 @@ void findParent(string p, string h, map<string,string> &m1, map<string,vector<st
       p3 = p4 + p5;
       if(m1.find(p3) != m1.end())
         if(m1[p3] == h){
-          p4 = m1[(*it)] + p6;
-          vs.insert(p4);
-          p4 = m1[(*it)] + p7;
-          vs.insert(p4);
+          if(p9 == "+"){
+            if(p8 == "-"){
+              p4 = m1[(*it)] + p6;
+              vs.insert(p4);
+            }else if(p8 == "+"){
+              p4 = m1[(*it)] + p6;
+              vs.insert(p4);
+              p4 = m1[(*it)] + p7;
+              vs.insert(p4);
+            }
+          }else{
+            p4 = m1[(*it)] + p6;
+            vs.insert(p4);
+            p4 = m1[(*it)] + p7;
+            vs.insert(p4);
+          }
         }
       
       p4 = (*it)[1];
@@ -202,10 +341,22 @@ void findParent(string p, string h, map<string,string> &m1, map<string,vector<st
       p3 = p4 + p5;
       if(m1.find(p3) != m1.end())
         if(m1[p3] == h){
-          p4 = m1[(*it)] + p6;
-          vs.insert(p4);
-          p4 = m1[(*it)] + p7;
-          vs.insert(p4);
+          if(p9 == "+"){
+            if(p8 == "-"){
+              p4 = m1[(*it)] + p6;
+              vs.insert(p4);
+            }else if(p8 == "+"){
+              p4 = m1[(*it)] + p6;
+              vs.insert(p4);
+              p4 = m1[(*it)] + p7;
+              vs.insert(p4);
+            }
+          }else{
+            p4 = m1[(*it)] + p6;
+            vs.insert(p4);
+            p4 = m1[(*it)] + p7;
+            vs.insert(p4);
+          }
         }
       
     
@@ -275,9 +426,9 @@ int main(){
         findChild(f,m,m1,m2,s2);
         cout<<"Case "<<i<<": ";
         cout<<f<<" "<<m <<" ";
-        if(s2.empty())
-          cout<<"IMPOSSIBLE";
-        else
+        if(s2.size() == 1)
+          cout<<(*s2.begin());
+        else if(s2.size() > 1)
           printSet2(s2);
         cout<<endl;
       }else if( f == "?" ){
@@ -285,7 +436,9 @@ int main(){
         cout<<"Case "<<i<<": ";
         if(s2.empty())
           cout<<"IMPOSSIBLE";
-        else
+        else if(s2.size() == 1)
+          cout<<(*s2.begin());
+        else if(s2.size() > 1)
           printSet2(s2);
         cout<<" "<<m <<" "<<h;        
         cout<<endl;
@@ -295,7 +448,9 @@ int main(){
         cout<<f<<" ";
         if(s2.empty())
           cout<<"IMPOSSIBLE";
-        else
+        else if(s2.size() == 1)
+          cout<<(*s2.begin());
+        else if(s2.size() > 1)
           printSet2(s2);
         cout<<" "<<h;
         cout<<endl;
