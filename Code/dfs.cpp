@@ -1,0 +1,78 @@
+#include <iostream>
+#include <stack>
+#include <vector>
+
+#define X first
+#define Y second
+#define LI long long
+#define MP make_pair
+#define PB push_back
+#define SZ size()
+#define SQ(a) ((a)*(a))
+#define MAX(a,b) ((a)>(b)?(a):(b))
+#define MIN(a,b) ((a)<(b)?(a):(b))
+
+using namespace std;
+int N; //Number of nodes
+vector<pair<int,int> > A[10001];   // listas de adyacencia
+
+int DFS(int s, int t){
+  if (s == t) return 0;
+  vector<int> v(N, -1); // inicializar distancias
+  v[s] = 0;             // distancia hasta s es 0
+  stack<pair<int,int> > st;        // inicializar stack
+  bool visited[N];
+  for(int i=0; i<N; i++) visited[i] = false;
+  st.push(make_pair(0,s));
+  pair<int,int> a;
+  int final=0;
+  int actual=0;
+  
+  while(!st.empty()){
+    a = st.top();
+    cout<<"Top: "<<a.second<<endl;
+    st.pop();
+    
+    if(actual < a.first)
+      actual = a.first;
+    
+    if(a.second == t){
+      if(final == 0) final = actual;
+      else if(final > actual){
+        final = actual; 
+        actual = 0;
+      }
+      
+    }else{
+      
+      if(!visited[a.second]){
+        visited[a.second] = true;
+        for(int i=0; i<int(A[a.second].size()); i++){
+          
+          if(!visited[A[a.second][i].second])
+            st.push(A[a.second][i]);
+        }
+      }
+    }
+    cout<<final<<" "<<actual<<endl;
+  }
+  cout<<endl;
+  return final;
+}
+
+int main(){
+
+  N = 6;      // solucion 0-1-3-5, distancia 3
+  A[0].PB(make_pair(5,1)); // arista (0, 1) con coste 5
+  A[0].PB(make_pair(5,2));
+  A[1].PB(make_pair(1,3));
+  A[1].PB(make_pair(7,4));
+  A[2].PB(make_pair(5,5));
+  A[3].PB(make_pair(1,5));
+  
+  cout << DFS(0, 5) << endl; 
+  
+  return 0;
+}
+
+

@@ -39,13 +39,13 @@ int BFS(int s, int t) { // distancia entre s y t
     // para todos los nodos adyacentes de l[i]
     for (int j = 0; j < (int)A[l[i]].SZ; j++)
       // si el vecino no se ha visitado
-      if (v[ A[ l[i] ][j] ] < 0) {
+      if (v[A[l[i]][j]] < 0) {
         // actualizar su distancia
-	      v[A[l[i]][j]] = v[l[i]] + 1;
-              // si encontramos t, devolver resultado
-	      if (A[l[i]][j] == t) return v[t];
-              // agregar a la cola
-	      l[k++] = A[l[i]][j];
+	v[A[l[i]][j]] = v[l[i]] + 1;
+        // si encontramos t, devolver resultado
+	if (A[l[i]][j] == t) return v[t];
+        // agregar a la cola
+	l[k++] = A[l[i]][j];
       }
   return -1;
 }

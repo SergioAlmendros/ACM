@@ -1,0 +1,11 @@
+//Fibonacci recursivo tiene una complejidad de 2^n (porque por cada elemento se llama 2 veces a la funcion) --> Dinamico sera n.
+//Problema de la moneda:
+//Recursivo:
+
+A[3] = {1,4,6}
+int moneda(int n){
+
+  if(n==0) return 0;
+  if(n<0) return -1;
+  return 1 + min( moneda(n-A[0]), moneda(n-A[1]), moneda(n-A[2]));
+}
