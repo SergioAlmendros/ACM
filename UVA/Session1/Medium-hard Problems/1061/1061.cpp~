@@ -190,6 +190,11 @@ void findParent(string p, string h, map<string,string> &m1, map<string,vector<st
               p4 = m1[(*it)] + p7;
               vs.insert(p4);
             }
+          }else{
+            p4 = m1[(*it)] + p6;
+            vs.insert(p4);
+            p4 = m1[(*it)] + p7;
+            vs.insert(p4);
           }
         }
         
@@ -208,6 +213,11 @@ void findParent(string p, string h, map<string,string> &m1, map<string,vector<st
               p4 = m1[(*it)] + p7;
               vs.insert(p4);
             }
+          }else{
+            p4 = m1[(*it)] + p6;
+            vs.insert(p4);
+            p4 = m1[(*it)] + p7;
+            vs.insert(p4);
           }
         }
       
@@ -226,6 +236,11 @@ void findParent(string p, string h, map<string,string> &m1, map<string,vector<st
               p4 = m1[(*it)] + p7;
               vs.insert(p4);
             }
+          }else{
+            p4 = m1[(*it)] + p6;
+            vs.insert(p4);
+            p4 = m1[(*it)] + p7;
+            vs.insert(p4);
           }
         }
       
@@ -244,6 +259,11 @@ void findParent(string p, string h, map<string,string> &m1, map<string,vector<st
               p4 = m1[(*it)] + p7;
               vs.insert(p4);
             }
+          }else{
+            p4 = m1[(*it)] + p6;
+            vs.insert(p4);
+            p4 = m1[(*it)] + p7;
+            vs.insert(p4);
           }
         }
       
@@ -262,6 +282,11 @@ void findParent(string p, string h, map<string,string> &m1, map<string,vector<st
               p4 = m1[(*it)] + p7;
               vs.insert(p4);
             }
+          }else{
+            p4 = m1[(*it)] + p6;
+            vs.insert(p4);
+            p4 = m1[(*it)] + p7;
+            vs.insert(p4);
           }
         }
       
@@ -280,6 +305,11 @@ void findParent(string p, string h, map<string,string> &m1, map<string,vector<st
               p4 = m1[(*it)] + p7;
               vs.insert(p4);
             }
+          }else{
+            p4 = m1[(*it)] + p6;
+            vs.insert(p4);
+            p4 = m1[(*it)] + p7;
+            vs.insert(p4);
           }
         }
       
@@ -298,6 +328,11 @@ void findParent(string p, string h, map<string,string> &m1, map<string,vector<st
               p4 = m1[(*it)] + p7;
               vs.insert(p4);
             }
+          }else{
+            p4 = m1[(*it)] + p6;
+            vs.insert(p4);
+            p4 = m1[(*it)] + p7;
+            vs.insert(p4);
           }
         }
       
@@ -316,6 +351,11 @@ void findParent(string p, string h, map<string,string> &m1, map<string,vector<st
               p4 = m1[(*it)] + p7;
               vs.insert(p4);
             }
+          }else{
+            p4 = m1[(*it)] + p6;
+            vs.insert(p4);
+            p4 = m1[(*it)] + p7;
+            vs.insert(p4);
           }
         }
       

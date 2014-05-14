@@ -68,7 +68,7 @@ void printVector(vector<pair<int,pair<int,int> > > &v){
 }
 
 
-int BFS(int s, int t) { // distancia entre s y t
+/*int BFS(int s, int t) { // distancia entre s y t
   if (s == t) return 0;
   pair<int,int> l[100001];
   int k = 0;  // inicializar cola
@@ -96,6 +96,45 @@ int BFS(int s, int t) { // distancia entre s y t
 	      
       }
   return -1;
+}*/
+
+int DFS(int s, int t) { // distancia entre s y t
+  if (s == t) return 0;
+  stack<pair<int,int> > l;
+  vector<int> v(N, -1); // inicializar distancias
+  l.push(make_pair(s,0));
+  v[s] = 0;             // distancia hasta s es 0
+  
+  pair<int,int> a,b;
+  while(!l.empty()){
+    // para todos los nodos adyacentes de l.top()
+    a = l.top();
+    l.pop();
+    //cout<<a.first<<endl;
+    for (int j = (int)A[a.first].SZ-1; j >=0 ; j--){
+      // si el vecino no se ha visitado
+      if (v[ A[ a.first ][j].first ] < 0) {
+        // actualizar su distancia
+        
+        if( A[a.first][j].second > a.second)
+          v[A[a.first][j].first] = A[a.first][j].second;
+        else
+          v[A[a.first][j].first] = a.second;
+              // si encontramos t, devolver resultado
+
+	      if (A[a.first][j].first == t) return v[t];
+              // agregar a la cola
+        
+	      //l[k++] = A[l[i].first][j];
+	      //l.push(A[a.first][j]);
+	      b = A[a.first][j];
+	      b.second = v[A[a.first][j].first];
+	      l.push(b);
+	      
+      }
+    }
+  }
+  return -1;
 }
 
 int main(){
@@ -120,7 +159,8 @@ int main(){
     for(int j=0; j<Q; j++){
       cin>>k>>t;
       //cout<<k<<" "<<t<<endl;
-      cout<<BFS(k,t)<<endl;
+      //cout<<"\n"<<DFS(k,t)<<"\n"<<endl;
+      cout<<DFS(k,t)<<endl;
     }
     //if(i < tc-1)
       cout<<endl;
