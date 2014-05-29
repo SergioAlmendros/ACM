@@ -28,19 +28,15 @@ bool good(int k, int i){
 void pos(int k){
 
   if( k == 8 ){
-    //cout<<"Found a solution"<<endl;
     int c = 0;
     for(int i=0; i<8; i++){
       c += B[i][queen[i]];
-      //cout<<" "<<B[i][queen[i]];
     }
-    //cout<<endl;
     if(maxv < c) maxv = c;
     
   }else{
     for(int i=0; i<8; i++){
       if( good(k,i) ){
-      
         queen[k] = i;
         pos(k+1);
       

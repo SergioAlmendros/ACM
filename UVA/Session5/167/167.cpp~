@@ -72,7 +72,6 @@ int main(){
       r = " " + r;
     }
     cout<<r<<endl;
-    convert.clear();
     
     maxv = 0;
   }
