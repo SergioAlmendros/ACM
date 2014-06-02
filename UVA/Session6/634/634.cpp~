@@ -62,7 +62,7 @@ int main(){
       }
     }
     
-    printVectorLines(vl);
+    //printVectorLines(vl);
     
     int c = 0;
     while(true){
